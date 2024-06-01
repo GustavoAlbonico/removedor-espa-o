@@ -38,12 +38,18 @@ $('#conteudo-list').on('click','.remover', (e) => {
 });
 
 let idTimeout;
+let lastLiElement;
 
 $('#conteudo-list').on('click','.copiar', (e) => {
     const liElement = $(e)[0].currentTarget.closest('li');
 
-    const pElementValue = $(liElement).find('.conteudo-sem-espaco').text();
+    if(lastLiElement == liElement){
         clearTimeout(idTimeout);
+    }
+    
+    lastLiElement = liElement;
+
+    const pElementValue = $(liElement).find('.conteudo-sem-espaco').text();
 
         navigator.clipboard.writeText(pElementValue).then(() => {
             $(liElement).find('.copiar-mensagem').fadeIn('hide');
