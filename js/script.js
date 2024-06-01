@@ -1,3 +1,4 @@
+
 $('#btn-submit').on("click", (e) => {
     e.preventDefault();
 
@@ -8,24 +9,28 @@ $('#btn-submit').on("click", (e) => {
         return;
     }
 
+    $('#conteudo-list').children().removeClass('last-add');
+
     const li = `
-    <li>
+    <li class="last-add">
         <p class="conteudo-sem-espaco">${inputValueFormated}</p>
         <div class="conteudo-acoes">
-            <button class="copiar">
+            <button class="copiar" title="Copiar">
                 <i class="fa-regular fa-copy"></i>
             </button>
-            <div class="copiar-mensagem hide">
-                <span>Conteúdo Copiado!</span>
+            <div id="div-drop-shadow">
+                <div class="copiar-mensagem hide">
+                    <span>Conteúdo Copiado!</span>
+                </div>
             </div>
-            <button class="remover">
+            <button class="remover" title="Remover">
                 <i class="fa-regular fa-trash-can"></i>
             </button>
         </div>
     </li>
    `;
 
-   $('#conteudo-list').append(li);
+   $('#conteudo-list').prepend(li);
 })
 
 $('#conteudo-list').on('click','.remover', (e) => {
